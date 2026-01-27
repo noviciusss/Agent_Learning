@@ -1,0 +1,4 @@
+streamlit
+scrapegraph_py
+python-dotenv
+pydantic
