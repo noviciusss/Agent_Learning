@@ -1,0 +1,4 @@
+agno 
+streamlit
+python-dotenv
+requests
