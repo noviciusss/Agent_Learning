@@ -152,7 +152,6 @@ with st.sidebar:
     if GROQ_API_KEY:
         os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
-    st.caption("Deployment: Add GROQ_API_KEY in Streamlit Secrets (not in code).")
     st.markdown("""
     This tool generates research reports by:
     1. Searching the web
