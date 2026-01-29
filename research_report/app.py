@@ -22,6 +22,15 @@ st.markdown('Generate comprehensive research reports on any topic using Hacker N
 
 topic = st.text_input('Enter your research topic:', key='topic_input')
 
+def get_secret(key: str, default: str = "") -> str:
+    try:
+        return st.secrets.get(key, default)
+    except Exception:
+        pass
+
+    return os.getenv(key, default)
+
+
 def fetch_url_text(url: str, timeout: int = 15, max_chars: int = 3000) -> dict:
     """Fetch the web page and return cleaned text for research.
     
@@ -132,7 +141,18 @@ with st.sidebar:
     max_chars_per_source = st.slider("Max chars per URL", 1000,5000,3000, step =500)
     timeout_s = st.slider("Tool timeout (s)", 5,20,10)
     show_sources = st.checkbox("Show fetched sources (debug)", value=True)
-    
+    GROQ_API_KEY = st.text_input(
+        "GROQ_API_KEY",
+        value=get_secret("GROQ_API_KEY", ""),
+        type="password",
+        help="Set this in Streamlit Secrets for deployment.",
+    )
+
+    # Set env var for Groq client usage
+    if GROQ_API_KEY:
+        os.environ["GROQ_API_KEY"] = GROQ_API_KEY
+
+    st.caption("Deployment: Add GROQ_API_KEY in Streamlit Secrets (not in code).")
     st.markdown("""
     This tool generates research reports by:
     1. Searching the web
