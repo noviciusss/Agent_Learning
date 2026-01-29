@@ -2,3 +2,5 @@ agno
 streamlit
 python-dotenv
 requests
+ddgs
+bs4
