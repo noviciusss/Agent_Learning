@@ -4,3 +4,4 @@ python-dotenv
 requests
 ddgs
 bs4
+groq
